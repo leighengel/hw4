@@ -1,7 +1,20 @@
 Rails.application.routes.draw do
-  get("/", { :controller => "places", :action => "index" })
-  resources "entries"
-  resources "places"
+#   get("/", { :controller => "places", :action => "index" })
+#   resources "entries"
+#   resources "places"
+#   resources "sessions"
+#   resources "users"
+# end
+
+  # Resources
   resources "sessions"
   resources "users"
+  
+  # Login/logout
+  get("/login", { :controller => "sessions", :action => "new" })
+  get("/logout", { :controller => "sessions", :action => "destroy" })
+
+  # Define the root route
+  get("/", { :controller => "users", :action => "new" })
 end
+
