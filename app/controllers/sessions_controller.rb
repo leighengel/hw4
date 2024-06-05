@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by({ "email" => params["email"] })
+    puts @user.inspect
     if @user
       if BCrypt::Password.new(@user["password"]) == params["password"]
 
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
         flash["notice"] = "You've logged in."
         redirect_to "/"
       else
-        flash["notice"] = "Unsuccessful login."
+        flash["notice"] = "Bad login."
         redirect_to "/sessions/new"
       end
     else
